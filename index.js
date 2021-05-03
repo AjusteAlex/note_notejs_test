@@ -1,7 +1,6 @@
 const express = require('express')
 const app = express()
 
-//GET /note/12345
 app.get('/note/:note_id', (req, res) => {
     const note = {
         id: req.params.note_id,
@@ -12,4 +11,17 @@ app.get('/note/:note_id', (req, res) => {
     res.send(note)
 })
 
-app.listen(2000)    
+app.post('/note', (req, res) => {
+    const noteId = 'bidon'
+
+    res
+        .status(201)
+        .header('Location', `/note/${noteId}`)
+        .send({
+            id: noteId,
+            title: 'nouvelle note',
+            content: 'rien a dire'
+        })
+})
+
+app.listen(2000)
