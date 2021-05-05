@@ -5,13 +5,16 @@ const mongoose = require('mongoose')
 app.use(express.json())
 
 
-app.get('/note/:note_id', (req, res) => {
-    const note = {
-        id: req.params.note_id,
-        title: "super note",
-        content: "C'est vraiment tres interessant"
-    }
+const Note = mongoose.model('Note', {
+    title: String,
+    content: String,
+});
 
+app.get('/note/:note_id', async (req, res) => {
+    const uri = "mongodb+srv://test_user:pouetpouet@cluster0.vs4af.mongodb.net/test_nodejs";
+    await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
+
+    const note = await Note.findById(req.params.note_id)
     res.send(note)
 })
 
@@ -19,11 +22,6 @@ app.post('/note', async (req, res) => {
     try {
         const uri = "mongodb+srv://test_user:pouetpouet@cluster0.vs4af.mongodb.net/test_nodejs";
         await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
-
-        const Note = mongoose.model('Note', {
-            title: String,
-            content: String,
-        });
 
         const currentNote = new Note({
             title: req.body.title,
