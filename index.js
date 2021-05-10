@@ -4,6 +4,8 @@ const app = express()
 const mongoose = require('mongoose')
 app.use(express.json())
 
+require('dotenv').config()
+require('./datasource/mongo').config()
 
 const Note = mongoose.model('Note', {
     title: String,
@@ -11,18 +13,12 @@ const Note = mongoose.model('Note', {
 });
 
 app.get('/note/:note_id', async (req, res) => {
-    const uri = "mongodb+srv://test_user:pouetpouet@cluster0.vs4af.mongodb.net/test_nodejs";
-    await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
-
     const note = await Note.findById(req.params.note_id)
     res.send(note)
 })
 
 app.post('/note', async (req, res) => {
     try {
-        const uri = "mongodb+srv://test_user:pouetpouet@cluster0.vs4af.mongodb.net/test_nodejs";
-        await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
-
         const currentNote = new Note({
             title: req.body.title,
             content: req.body.content
