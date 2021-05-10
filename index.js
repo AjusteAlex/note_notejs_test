@@ -1,16 +1,12 @@
 const express = require('express')
 const app = express()
-
-const mongoose = require('mongoose')
 app.use(express.json())
 
 require('dotenv').config()
 require('./datasource/mongo').config()
 
-const Note = mongoose.model('Note', {
-    title: String,
-    content: String,
-});
+const ValidationError = require('mongoose').Error.ValidationError
+const { Note } = require('./model/note')
 
 app.get('/note/:note_id', async (req, res) => {
     const note = await Note.findById(req.params.note_id)
@@ -25,14 +21,22 @@ app.post('/note', async (req, res) => {
         })
 
         const createdNote = await currentNote.save();
-        
+
         res.setHeader('Location', `/note/${createdNote.id}`)
         res.status(201)
         res.send(createdNote)
     } catch (exception) {
+        if (exception instanceof ValidationError) {
+            res.status(400)
+            res.json(exception.message)
+            return
+        }
         res.sendStatus(500)
         console.error(exception)
     }
 })
 
-app.listen(2000)
+
+app.listen(process.env.PORT, () => {
+    console.log(`Backend listening port ${process.env.PORT}`)
+})
