@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const express = require('express')
 const app = express()
 
@@ -11,8 +13,7 @@ const Note = mongoose.model('Note', {
 });
 
 app.get('/note/:note_id', async (req, res) => {
-    const uri = "mongodb+srv://test_user:pouetpouet@cluster0.vs4af.mongodb.net/test_nodejs";
-    await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
+    await mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
 
     const note = await Note.findById(req.params.note_id)
     res.send(note)
@@ -20,8 +21,7 @@ app.get('/note/:note_id', async (req, res) => {
 
 app.post('/note', async (req, res) => {
     try {
-        const uri = "mongodb+srv://test_user:pouetpouet@cluster0.vs4af.mongodb.net/test_nodejs";
-        await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
+        await mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
 
         const currentNote = new Note({
             title: req.body.title,
@@ -39,4 +39,4 @@ app.post('/note', async (req, res) => {
     }
 })
 
-app.listen(2000)
+app.listen(process.env.PORT)
