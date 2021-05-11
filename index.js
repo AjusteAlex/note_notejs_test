@@ -25,11 +25,16 @@ app.post('/note', async (req, res) => {
         })
 
         const createdNote = await currentNote.save();
-        
+
         res.setHeader('Location', `/note/${createdNote.id}`)
         res.status(201)
         res.send(createdNote)
     } catch (exception) {
+        if (exception instanceof mongoose.Error.ValidationError) {
+            res.status(400).json({ message: exception.message })
+            return
+        }
+
         res.sendStatus(500)
         console.error(exception)
     }
