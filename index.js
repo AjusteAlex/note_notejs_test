@@ -6,11 +6,7 @@ const app = express()
 const mongoose = require('mongoose')
 app.use(express.json())
 
-
-const Note = mongoose.model('Note', {
-    title: String,
-    content: String,
-});
+const { Note } = require('./model/note')
 
 app.get('/note/:note_id', async (req, res) => {
     await mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
