@@ -24,4 +24,28 @@ router.post('/signup', async (req, res) => {
     }
 })
 
+router.get('/signin', async (req, res) => {
+    try {
+        const user = await User.findOne({ username: req.body.username })
+
+        if (user === null) {
+            res.sendStatus(401)
+            return
+        }
+
+        const isPasswordValid = User.validatePassword( req.body.password, user.password )
+
+        if (!isPasswordValid) {
+            res.sendStatus(401)
+            return
+        }
+
+        //TODO generate JWT 
+        res.status(200).send()
+    } catch (exception) {
+        res.sendStatus(500)
+        console.error(exception)
+    }
+})
+
 module.exports = router

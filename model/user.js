@@ -14,10 +14,9 @@ userSchema.statics.generatePasswordHash = (password) => {
     return hash;
 };
 
-// userSchema.statics.validatePassword = (password, hashedPassword) => {
-//     let res = bcrypt.compareSync(password, hashedPassword);
-//     return res;
-// };
+userSchema.statics.validatePassword = (password, hashedPassword) => {
+    return bcrypt.compareSync(password, hashedPassword);
+};
 
 
 module.exports = mongoose.model('User', userSchema)
