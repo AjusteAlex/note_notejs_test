@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const User = require('../model/user')
+const jwt = require('jsonwebtoken')
 
 router.post('/signup', async (req, res) => {
     try {
@@ -40,8 +41,13 @@ router.get('/signin', async (req, res) => {
             return
         }
 
-        //TODO generate JWT 
-        res.status(200).send()
+        const accessToken = jwt.sign({
+            username: user.username
+        }, process.env.JWT_SECRET);
+
+        res.status(200).send({
+            token: accessToken
+        })
     } catch (exception) {
         res.sendStatus(500)
         console.error(exception)
