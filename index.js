@@ -9,4 +9,7 @@ app.use(express.json())
 const noteRouter = require('./route/note')
 app.use('/', noteRouter)
 
+const authRouter = require('./route/auth')
+app.use('/auth', authRouter)
+
 app.listen(process.env.PORT)

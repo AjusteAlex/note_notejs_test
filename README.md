@@ -24,19 +24,19 @@ Voir : [dotenv](https://www.npmjs.com/package/dotenv)
 
  - Chaque modèle dans un fichier dédié
 
-# Gestion des sessions et des droits utilisateurs
-
- - CRUD de compte utilisateur
- - Autorisation sur les routes Express
-
- Voir : [passportjs](https://www.passportjs.org/)
-
-
 # Refactorisation des routes
 
 - Chaque domaine fonctionnel dans un fichier dédié
 
 Voir : [expressjs Routing](https://expressjs.com/en/guide/routing.html)
+
+# Gestion des sessions et des droits utilisateurs
+
+ - CRUD de compte utilisateur
+ - Autorisation sur les routes Express
+
+ Voir : [jwt](https://stackabuse.com/authentication-and-authorization-with-jwts-in-express-js/)
+
 
 # Déployer en prod
 - Heroku ?
