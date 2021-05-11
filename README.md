@@ -35,8 +35,9 @@ Voir : [expressjs Routing](https://expressjs.com/en/guide/routing.html)
  - CRUD de compte utilisateur
  - Autorisation sur les routes Express
 
- Voir : [jwt](https://stackabuse.com/authentication-and-authorization-with-jwts-in-express-js/)
-
+ Voir : 
+  - [jwt](https://stackabuse.com/authentication-and-authorization-with-jwts-in-express-js/)
+  - [OWASP Cheat sheet](https://cheatsheetseries.owasp.org/cheatsheets/REST_Security_Cheat_Sheet.html#jwt)
 
 # Déployer en prod
 - Heroku ?
