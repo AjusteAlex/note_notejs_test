@@ -36,9 +36,9 @@ Voir : [expressjs Routing](https://expressjs.com/en/guide/routing.html)
  - Autorisation sur les routes Express
 
  Voir : 
-  - [jwt](https://stackabuse.com/authentication-and-authorization-with-jwts-in-express-js/)
-  - [OWASP Cheat sheet](https://cheatsheetseries.owasp.org/cheatsheets/REST_Security_Cheat_Sheet.html#jwt)
-
+  - [JWT with ExpressJS](https://stackabuse.com/authentication-and-authorization-with-jwts-in-express-js/)
+  - [OWASP JWT security cheat sheet](https://cheatsheetseries.owasp.org/cheatsheets/REST_Security_Cheat_Sheet.html#jwt)
+  - [Refresh Token : When to use them](https://auth0.com/blog/refresh-tokens-what-are-they-and-when-to-use-them/)
 # Déployer en prod
 - Heroku ?
 - Vercel.com ?
