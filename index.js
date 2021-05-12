@@ -12,4 +12,7 @@ app.use('/', noteRouter)
 const authRouter = require('./route/auth').router
 app.use('/auth', authRouter)
 
+const aboutRouter = require('./route/about')
+app.use('/about', aboutRouter)
+
 app.listen(process.env.PORT)
